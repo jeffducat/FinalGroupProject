@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c2ef23dd7862445892b603c8ed76a9dd" Name="Diagram1" ZoomLevel="37">
+        <EntityTypeShape EntityType="franchiseDbModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="franchiseDbModel.Crime" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="franchiseDbModel.Item" Width="1.5" PointX="12.125" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="franchiseDbModel.AspNetRole" Width="1.5" PointX="5.625" PointY="7" />
+        <EntityTypeShape EntityType="franchiseDbModel.AspNetUserClaim" Width="1.5" PointX="10.125" PointY="8" />
+        <EntityTypeShape EntityType="franchiseDbModel.AspNetUserLogin" Width="1.5" PointX="10.125" PointY="2.5" />
+        <EntityTypeShape EntityType="franchiseDbModel.UserItem" Width="1.5" PointX="13.125" PointY="3" />
+        <AssociationConnector Association="franchiseDbModel.FK__UserItems__ItemI__66603565" />
+        <EntityTypeShape EntityType="franchiseDbModel.Mentor" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="franchiseDbModel.Ability" Width="1.5" PointX="1.625" PointY="10" />
+        <EntityTypeShape EntityType="franchiseDbModel.AspNetUser" Width="1.5" PointX="5" PointY="0.75" />
+        <AssociationConnector Association="franchiseDbModel.FK__AspNetUse__Super__6D0D32F4" />
+        <AssociationConnector Association="franchiseDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="franchiseDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="franchiseDbModel.FK__UserItems__UserI__656C112C" />
+        <AssociationConnector Association="franchiseDbModel.FK_Mentor" />
+        <AssociationConnector Association="franchiseDbModel.FK_State" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

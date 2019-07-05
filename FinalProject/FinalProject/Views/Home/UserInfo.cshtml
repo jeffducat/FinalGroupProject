@@ -1,0 +1,252 @@
+﻿@using FinalProject.Models
+
+
+@{
+    ViewBag.Title = "UserInfo";
+}
+<h2>@ViewBag.errorPersonality</h2>
+<h2>@ViewBag.errorSuperPower</h2>
+<h2>@ViewBag.errorAlliance</h2>
+<h2>@ViewBag.errorMentor</h2>
+<h2>@ViewBag.errorState</h2>
+
+<body>
+    <div style="position:relative" id="foreground">
+        <img id="foregroundPic" src="..\Pictures\secret2.png" alt="yooooo" />
+        <div id="statePic" style="position:absolute; left:208px; top:47px;">
+            @if (Model.StateId != null)
+            {
+                <img id="statepic" src=@ViewBag.Img alt="NOT SHOWING" />
+            }
+            else
+            {
+                <img id="statepic" src="..\Pictures\QuestionMark.png" alt="NOT SHOWING" />
+
+            }
+        </div>
+        <div style="position:absolute; left:82px; top:322px">
+            <form action="../Home/SaveSuperName" method="post" id="Profile6">
+                Super Name:
+                <br />
+                @if (Model.SuperName != null)
+                {
+                    <input id="name" type="Text" name="superName" placeholder="@Model.SuperName" value="@Model.SuperName" />
+                }
+                else
+                {
+                    <input id="name" type="Text" name="superName" placeholder="Enter your SUPERNAME!" />
+                }
+                <input type="submit" value="Select" class="btn-success" />
+            </form>
+        </div>
+        <div style="position:absolute; left:82px; top:388px">
+            <form action="../Home/SaveSuperPower" method="post" id="Profile">
+                Super Power:
+                <br />
+                @if (ViewBag.PowerNames == null)
+                {
+                    <select name="superPower" form="Profile">
+                        @for (int i = 0; i < ViewBag.PowerNames.Count; i++)
+                        {
+                            <option value="@ViewBag.PowerNames[i]">@ViewBag.PowerNames[i]</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <label for="superpower">@Model.SuperPower</label>
+                    <select id="superpower" name="superPower" form="Profile">
+                        @for (int i = 0; i < ViewBag.PowerNames.Count; i++)
+                        {
+                            <option value="@ViewBag.PowerNames[i]">@ViewBag.PowerNames[i]</option>
+                        }
+                    </select>
+                }
+                <input type="submit" value="Select" class="btn-success" />
+            </form>
+        </div>
+        <div style="position:absolute; left:82px; top:453px">
+            <form action="../Home/SaveAlliance" method="post" id="Profile2">
+                Alliance:
+                <br />
+                @if (Model.C_Hero_Villain_ != null)
+                {
+                    if (Model.C_Hero_Villain_)
+                    {
+                        <label for="TRUE">Hero</label>
+                        <input id="TRUE" type="radio" name="HeroVillain" value="true" checked="checked" />
+                        <label for="FALSE">Villain</label>
+                        <input id="FALSE" type="radio" name="HeroVillain" value="false" />
+                    }
+                    else
+                    {
+                        <label for="TRUE">Hero</label>
+                        <input id="TRUE" type="radio" name="HeroVillain" value="true" />
+                        <label for="FALSE">Villain</label>
+                        <input id="FALSE" type="radio" name="HeroVillain" value="false" checked="checked" />
+                    }
+                }
+                else
+                {
+                    <label for="TRUE">Hero</label>
+                    <input id="TRUE" type="radio" name="HeroVillain" value="true" />
+                    <label for="FALSE">Villain</label>
+                    <input id="FALSE" type="radio" name="HeroVillain" value="false" />
+                }
+                <input id="allianceBtn" type="submit" value="Select" class="btn-success" />
+            </form>
+        </div>
+        <div style="position:absolute; left:82px; top:517px">
+            @if (Model.C_Hero_Villain_ != null)
+            {
+                <form action="../Home/SaveMentor" method="post" id="Profile5">
+                    Mentor:
+                    <br />
+                    @if (ViewBag.Mentors != null)
+                    {
+                        if (Model.Mentor == null)
+                        {
+                            <select name="Id" form="Profile5">
+                                @for (int i = 0; i < ViewBag.Mentors.Count; i++)
+                                {
+                                    <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
+                                }
+                            </select>
+                            <input type="submit" value="Select" class="btn-success" />
+                        }
+                        else
+                        {
+                            <label for="mentor">@Model.Mentor.Name</label>
+                            <select name="Id" form="Profile5" required id="mentor">
+                                @for (int i = 0; i < ViewBag.Mentors.Count; i++)
+                                {
+                                    <option value="@ViewBag.Mentors[i].Id">@ViewBag.Mentors[i].Name</option>
+                                }
+                            </select>
+                            <input type="submit" value="Select" class="btn-success" />
+                        }
+                    }
+                </form>
+            }
+            <p>@ViewBag.Error</p>
+        </div>
+        <div style="position:absolute; left:82px; top:582px">
+            <form action="../Home/SavePersonality" method="post" id="Profile3">
+                Personality:
+                <br />
+                @if (ViewBag.Personalities == null)
+                {
+                    <select name="personality" form="Profile3">
+                        @for (int i = 0; i < ViewBag.Personalities.Count; i++)
+                        {
+                            <option value="@ViewBag.Personalities[i]">@ViewBag.Personalities[i]</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <label for="person">@Model.Personality</label>
+                    <select id="person" name="personality" form="Profile3">
+                        @for (int i = 0; i < ViewBag.Personalities.Count; i++)
+                        {
+                            <option value="@ViewBag.Personalities[i]">@ViewBag.Personalities[i]</option>
+                        }
+                    </select>
+                }
+                <input type="submit" value="Select" class="btn-success" />
+            </form>
+        </div>
+        <div style="position:absolute; left:82px; top:648px">
+            <form action="../Map/SaveState" method="post" id="Profile4">
+                Location:
+                <br />
+                @if (ViewBag.StateNames == null)
+                {
+                    <select name="state" form="Profile4">
+                        @for (int i = 0; i < ViewBag.StateNames.Count; i++)
+                        {
+                            <option value="@ViewBag.StateNames[i]">@ViewBag.StateNames[i]</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <label for="StateId">@Model.StateId</label>
+                    <select id="stateId" name="state" form="Profile4">
+                        @for (int i = 0; i < ViewBag.StateNames.Count; i++)
+                        {
+                            <option value="@ViewBag.StateNames[i]">@ViewBag.StateNames[i]</option>
+                        }
+                    </select>
+                }
+                <input type="submit" value="Select" class="btn-success" />
+            </form>
+        </div>
+    </div>
+    <div id="button1">
+        @if (Model.SuperName != null && Model.SuperPower != null && Model.Personality != null)
+        {
+            <form action="../Algorithm/Index" method="post">
+                <button type="submit" value="@Model">Suggested Franchise</button>
+            </form>
+        }
+    </div>
+</body>
+
+<style>
+
+    html, body {
+        background-image: url('../../Pictures/gothamblue.jpg');
+        height: 100%;
+        background-size: cover;
+        color: darkorange;
+    }
+
+    .container body-content {
+        position: fixed;
+    }
+
+    #backgroundPic {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        z-index: -1;
+    }
+
+    #foregroundPic {
+        position: relative;
+        background-size: contain;
+        display: inline-block;
+        float: left;
+        width: 500px;
+        margin-bottom: 0;
+    }
+
+    #foreground {
+        margin-left: 25%;
+        margin-right: auto;
+    }
+
+    #statepic {
+        transform: rotate(6deg);
+        z-index: 101;
+        width: 240px;
+        height: 220px;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: midnightblue;
+        background-color: deepskyblue;
+        border-bottom-color: deepskyblue;
+        border-style: groove;
+        font-family: 'Copperplate Gothic';
+    }
+
+    #button1 {
+        position: absolute;
+        left: 187px;
+        width: 93px;
+    }
+</style>

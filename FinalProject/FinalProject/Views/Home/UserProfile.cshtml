@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+
+
+<body>
+    <div>
+        <h1>Franchise Selection</h1>
+
+
+        <form action="../Home/GetMentors" method="post" id="Profile">
+
+            <h4>Please choose your superpowers and select the type of franchise you would like to start</h4>
+            <div class="superName">
+                @if (ViewBag.User.SuperName == null)
+                {
+                    <input type="text" name="SuperName" placeholder="Super Name" required/>
+                }
+                else
+                {
+                    <input type="text" name="SuperName" value="@ViewBag.User.SuperName" placeholder="@ViewBag.User.SuperName" />
+
+                }
+            </div>
+            <div class="superPower">
+                
+
+                @if (ViewBag.User.SuperPower == null)
+                {
+                    <select name="SuperPower" form="Profile">
+                        @for (int i = 0; i < ViewBag.PowerNames.Count; i++)
+                        {
+                            <option value="@ViewBag.PowerNames[i]">@ViewBag.PowerNames[i]</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <select name="SuperPower" form="Profile">
+
+                        <option value="" disabled selected>@ViewBag.User.SuperPower</option>
+
+                        @for (int i = 0; i < ViewBag.PowerNames.Count; i++)
+                        {
+                            <option value="@ViewBag.PowerNames[i]"> @ViewBag.PowerNames[i] </option>
+                        }
+                    </select>
+                }
+                <br />
+            </div>
+            <div class="personality">
+                @if (ViewBag.User.Personality == null)
+                {
+                    <select name="Personality" form="Profile">
+                        @for (int i = 0; i < ViewBag.Personalities.Count; i++)
+                        {
+                            <option value="@ViewBag.Personalities[i]">@ViewBag.Personalities[i]</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <select name="Personality" form="Profile">
+                        <option value="" disabled selected>@ViewBag.User.Personality</option>
+
+                        @for (int i = 0; i < ViewBag.Personalities.Count; i++)
+                        {
+                            <option value="@ViewBag.Personalities[i]">@ViewBag.Personalities[i]</option>
+                        }
+                    </select>
+                }
+            </div>
+            Hero: <input type="radio" name="HeroVillain" value="true" required />
+            Villain: <input type="radio" name="HeroVillain" value="false" required />
+
+            <input type="submit" value="Get Mentors" />
+        </form>
+
+        <form action="../Home/SaveMentors" method="post">
+
+            @if (Model != null)
+            {
+
+                <p>Please select a Mentor to help get you started</p>
+                <table class="table">
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Personality</th>
+                        <th>Ability 1</th>
+                        <th>Ability 2</th>
+                        <th>Mentor Selection</th>
+                    </tr>
+
+                    @foreach (var mentor in Model)
+                    {
+
+                        <tr>
+                            <td>@mentor.Name</td>
+                            <td>@mentor.Personality</td>
+                            <td>@mentor.Ability1</td>
+                            <td>@mentor.Ability2</td>
+                            <td><a href="../Home/SaveMentor?Id=@mentor.Id" class="btn-primary">Select This Mentor</a></td>
+                        </tr>
+                    }
+
+                </table>
+
+            }
+        </form>
+    </div>
+</body>
+
+
+<style>
+    html, body {
+        
+        background-image: url('../../Pictures/gothamblue.jpg'); 
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+        color: darkorange;
+    }
+
+    .superName {
+        margin-bottom: 20px;
+    }
+
+    .superPower {
+        margin-bottom: 20px;
+    }
+
+    .personality {
+        margin-bottom: 20px;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

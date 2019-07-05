@@ -1,0 +1,127 @@
+﻿
+
+<body>
+    <div>
+        @if (ViewBag.Ability != null && ViewBag.Name != null &&
+            ViewBag.State.State != null && ViewBag.Img != null &&
+            ViewBag.Max != null && ViewBag.SuggestedItems != null)
+        {
+            <div class="text1">
+                <p class="line-1 anim-typewriter">The Ability: @ViewBag.Ability</p>
+                <p>The Crime: @ViewBag.Name</p>
+                <p>The State with Highest rate of that crime: @ViewBag.State.State - Crime Rate (per 100K): @ViewBag.Max </p>
+            </div>
+            <p>
+
+                <img id="foregroundPic" src=@ViewBag.Img alt="@ViewBag.State.State" />
+            </p>
+            <div style="left:100px; top:100px; position:relative;">
+                <form action="../Algorithm/SaveFranchise" method="post">
+                    <input type="hidden" name="location" value="@ViewBag.State.State" />
+                    <p>Suggested mentors for your line of work: </p>
+                    @foreach (var mentor in ViewBag.Mentors)
+                    {
+                        <label for="@mentor">@mentor </label>
+                        <input id="@mentor" type="radio" name="mentorName" value="@mentor" />
+                        <br />
+                    }
+                    <input type="submit" value="Get Suggested Franchise" class="btn-default" />
+                </form>
+
+            </div>
+            <div class="table1">
+                <h3 style="padding-top:23%">@ViewBag.Message</h3>
+                <table class="table">
+                    <tr>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Suggested Use</th>
+                    </tr>
+                    @foreach (var item in ViewBag.SuggestedItems)
+                    {
+
+                        int owned = 0;
+                        foreach (var inv in ViewBag.Inventory)
+                        {
+                            if (inv.ItemId == item.Id)
+                            {
+                                owned = inv.Quantity;
+                            }
+                        }
+                        <tr>
+                            <td>@item.ItemName Owned: @owned</td>
+                            <td>@item.Description</td>
+                            <td>$@item.Cost.ToString("0.00") <form action="../Algorithm/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
+                            <td>@item.Crime</td>
+                        </tr>
+
+                    }
+                </table>
+            </div>
+        }
+    </div>
+</body>
+<style>
+
+    @@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+    html, body {
+        background-image: url('../../Pictures/gothamdark.jpg');
+        height: 100%;
+        background-size: cover;
+        color: darkorange;
+        font-family: 'Copperplate Gothic';
+    }
+
+    .container body-content {
+        position: fixed;
+    }
+
+    #backgroundPic {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        z-index: -1;
+    }
+
+    #foregroundPic {
+        position: relative;
+        background-size: contain;
+        display: inline-block;
+        float: left;
+        width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5px;
+        border: solid;
+        border-color: darkgoldenrod;
+    }
+
+    table, th, td {
+        background-color: darkblue;
+        border: solid;
+    }
+
+    .text1 {
+        margin-top: 15px;
+        font-weight:bold;
+        color: deepskyblue;
+        font-family:'Copperplate Gothic';
+        font-size: 20px;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: midnightblue;
+        background-color: deepskyblue;
+        border-bottom-color: deepskyblue;
+        border-style: groove;
+        font-family: 'Copperplate Gothic';
+    }
+</style>
+
+
+
+

@@ -1,0 +1,62 @@
+﻿@model FinalProject.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div id="manage">
+    <fieldset id="Password">
+        <h4>Change your account settings</h4>
+        <hr />
+        <dl>
+            <dt>Password:</dt>
+            <dd>
+                [
+                @if (Model.HasPassword)
+                {
+                    @Html.ActionLink("Change your password", "ChangePassword")
+                }
+                else
+                {
+                    @Html.ActionLink("Create", "SetPassword")
+                }
+                ]
+            </dd>
+        </dl>
+    </fieldset>
+</div>
+<style>
+
+    html, body {
+        background-image: url('../../Pictures/gothamblue.jpg');
+        background-size: cover;
+        height: 100%;
+    }
+
+    /*.container body-content {
+                    position: fixed;
+                }*/
+
+    #backgroundPic {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        z-index: -1;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+        color: midnightblue;
+        background-color: deepskyblue;
+        border-bottom-color: deepskyblue;
+        border-style: groove;
+    }
+    #Password {
+        background-color: deepskyblue;
+        color: black;
+        padding: 10px;
+        width: 400px;
+        text-align: center;
+        border: solid black 3px;
+    }
+</style>

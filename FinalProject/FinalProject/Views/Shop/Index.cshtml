@@ -1,0 +1,82 @@
+﻿@using FinalProject.Models
+<h1 style="color:white">@ViewBag.Message</h1>
+<div class="row">
+    <div class="column" id="table">
+        <table class="table" id="tablet">
+            <caption><h3>Shop</h3></caption>
+            <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Cost</th>
+            </tr>
+            @foreach (Item item in Model)
+            {
+                string pic = string.Join("", item.ItemName.Split(' '));
+                pic = pic + ".jpg";
+                <tr>
+                    <td>@item.ItemName <img src="~/Pictures/Items/@pic" style="width:5em; height:5em;"/></td>
+                    <td>@item.Description</td>
+                    <td>$@item.Cost.ToString("0.00") <form action="../Shop/Purchase"><input type="number" min="1" max="100" value="1" name="quantity" required /><button type="submit" name="id" value="@item.Id">Buy</button></form></td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="column" id="table">
+        <table class="table" id="tablet">
+            <caption><h3>Inventory</h3></caption>
+            <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Sell</th>
+            </tr>
+            @foreach (UserItem item in ViewBag.UserItems)
+            {
+                string pic = string.Join("", item.Item.ItemName.Split(' '));
+                pic = pic + ".jpg";
+                <tr>
+                    <td>@item.Item.ItemName <img src="~/Pictures/Items/@pic" style="width:5em; height:5em;" /></td>
+                    <td>@item.Item.Description</td>
+                    <td>@item.Quantity</td>
+                    <td><form action="../Shop/Sell"><input type="number" min="1" max="@item.Quantity" value="1" name="quantity" required /> <button type="submit" name="item" value="@item.UserItemId">Sell</button></form></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<style>
+    html, body {
+        background-image: url('../../Pictures/gothamblue.jpg');
+        background-size: cover;
+        font-family: 'Copperplate Gothic';
+    }
+    #table{
+        background-image:url(../../Pictures/tablet.png);
+        background-size:contain;
+        background-repeat:no-repeat;
+    }
+    .row {
+        display: flex;
+    }
+    #tablet {
+        margin: 12%;
+        width: 75%;
+        display: block !important;
+        height: 75% !important;
+        overflow:scroll;
+    }
+    .column {
+        flex: 50%;
+        height: 64em !important;
+    }
+
+    
+    .navbar-inverse .navbar-nav > li > a {
+        color: midnightblue;
+        background-color: deepskyblue;
+        border-bottom-color: deepskyblue;
+        border-style: groove;
+        font-family: 'Copperplate Gothic';
+    }
+</style>
